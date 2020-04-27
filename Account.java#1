@@ -1,0 +1,111 @@
+import java.util.*;
+import javax.swing.*;
+public class Account{
+   private int id;
+   private double balance;
+   private double annualInterestRate;
+   private Date dateCreated;
+   
+   public Account(){
+      this(0,0,0);
+   }
+   public Account(int id, double balance, double rate){
+      this.id = id;
+      this.balance = balance;
+      annualInterestRate = rate;
+      dateCreated = new Date();
+   } 
+   public int getId(){
+      return id;}
+   public void setId(int id){this.id = id;}
+   public double getBalance(){
+      return balance;}
+   public void setBalance(double balance){this.balance = balance;}
+   public double getRate(){
+      return annualInterestRate;}
+   public void setRate(double rate){annualInterestRate = rate;}
+   
+   public Date getDate(){
+      return dateCreated;}
+   
+   public double getMonthlyInterestRate(){
+      return (annualInterestRate/100.0)/12;
+   }
+   
+   public double getMonthlyInterest(){
+      double b = getMonthlyInterestRate();
+      return balance*b;
+   }
+   
+   public void withdraw(int amount){
+      if(amount<0 || amount>balance){
+      
+         JOptionPane.showMessageDialog(null,"Invalid amount to withdraw"); 
+      
+         try{
+            String input = JOptionPane.showInputDialog("Write the amount you want to withdraw");
+            amount = new Integer(input).intValue();
+            withdraw(amount);
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Enter a proper number");
+         }
+      
+         
+      }else{
+         balance -= amount;
+         JOptionPane.showMessageDialog(null,"Succuesful withdraw");
+      }
+   }
+   
+   public void deposit(int amount){
+      if(amount<0){
+         JOptionPane.showMessageDialog(null,"Invalid amount"); 
+      
+         try{
+            String input = JOptionPane.showInputDialog("Write the amount you want to deposit");
+            amount = new Integer(input).intValue();
+            deposit(amount);
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Enter a proper number");
+         }
+      
+      }
+      else {balance += amount;
+         JOptionPane.showMessageDialog(null,"Succuesful deposit");
+      }
+   }
+   
+   public void withdraw(String a){
+      int s = 0;
+      try{
+         s = new Integer(a).intValue();
+      }catch(Exception e){
+         String input = JOptionPane.showInputDialog("Enter an proper amount");
+         withdraw(input);   
+      }
+      withdraw(s);
+   }
+   
+   public void ATM(){
+      int id, op = 0;
+      try{
+         String in = JOptionPane.showInputDialog("Enter an id");
+         id = new Integer(in).intValue();
+      }catch(Exception e){
+         JOptionPane.showMessageDialog("Enter an proper id");
+         ATM()
+      }
+   }
+   
+   public static void main(String[] args){
+      Account account = new Account(1122,20000,4.5);
+      account.withdraw(-2500);
+      account.deposit(3000);
+      
+      
+      //System.out.println("Total balance "+account.getBalance()+
+         //"\nTotal monthly interest "+account.getMonthlyInterest()+
+         //"\nDate created "+account.getDate());
+   } 
+   
+}
