@@ -1,6 +1,6 @@
 public class MyString2{
 /*
-10.23 (Implement the String class) The String class is provided in the Java library.
+(Implement the String class) The String class is provided in the Java library.
 Provide your own implementation for the following methods (name the new
 class MyString2):
 public MyString2(String s);
