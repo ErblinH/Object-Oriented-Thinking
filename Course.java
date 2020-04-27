@@ -1,7 +1,7 @@
 public class Course{
 
 /*
-10.9 (The Course class) Revise the Course class as follows:
+(The Course class) Revise the Course class as follows:
  The array size is fixed in Listing 10.6. Improve it to automatically increase
 the array size by creating a new larger array and copying the contents of the
 current array to it.
